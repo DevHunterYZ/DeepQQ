@@ -190,16 +190,14 @@ def emulate():
     epsilon = 1e-5
     startTime = time.time()
     x,y,buffer = 276,132,40
-    pressKeys = {"w": 0.0, "a": 0.0, "s": 0.0, "d": 0.0, "x": 0.0}
+    pressKeys = {"w": 0.0, "a": 0.0, "s": 0.0, "d": 0.0,"x":0.0}
     while True:
         if len(player_center)>0 and len(ball_center)>0 and len(player_speed)>0:
 
             pX,pY,pR = player_center[-1][0], player_center[-1][1], player_radius
             pVx,pVy = abs(player_speed[-1][0]),abs(player_speed[-1][1])
             bX,bY,bR = ball_center[-1][0],   ball_center[-1][1],   ball_radius
-
-
-
+            
             if pX-x>buffer:
                 print("a")
                 pressKeys["a"] = (pX-x)/(pVx+epsilon)
@@ -225,36 +223,16 @@ def emulate():
                 pressKeys["w"] = 0.0
                 pressKeys["s"] = 0.0
                 
-            if  player_center-ball_center < 200.00:
+            if  len(player_center)-len(ball_center) < 8:
                 pyautogui.keyDown("x")
             else:
                 pyautogui.keyUp("x")
+            if  len(ball_center)-len(player_center) < 8:
+                pyautogui.keyDown("x")
+            else:
+                pyautogui.keyUp("x")
+   
             
-
-            currTime = time.time()
-            if currTime-startTime < pressKeys["w"]:
-                pyautogui.keyDown("w")
-            else:
-                pyautogui.keyUp("w")
-
-            if currTime-startTime < pressKeys["s"]:
-                pyautogui.keyDown("s")
-            else:
-                pyautogui.keyUp("s")
-
-            if currTime-startTime < pressKeys["a"]:
-                pyautogui.keyDown("a")
-            else:
-                pyautogui.keyUp("a")
-
-            if currTime-startTime < pressKeys["d"]:
-                pyautogui.keyDown("d")
-            else:
-                pyautogui.keyUp("d")
-            if currTime-startTime < pressKeys["x"]:
-                pyautogui.keyDown("x")
-            else:
-                pyautogui.keyUp("x")
             
 for i in range(3)[-1:]:
     print(i)
