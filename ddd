@@ -225,7 +225,7 @@ def emulate():
                 pressKeys["w"] = 0.0
                 pressKeys["s"] = 0.0
                 
-            if  ball_center > 20:
+            if  player_center-ball_center < 200.00:
                 pyautogui.keyDown("x")
             else:
                 pyautogui.keyUp("x")
