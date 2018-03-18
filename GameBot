@@ -3,11 +3,10 @@ import time
 import numpy as np
 import random
 import cv2
-import numpy as np
 from mss import mss
 import math
 import pyautogui
-import random
+
 
 player_center,player_radius, player_speed,player_acc  = [],0,[],0.0
 ball_center,ball_radius,ball_speed,player_acc  = [],0,[],0.0
