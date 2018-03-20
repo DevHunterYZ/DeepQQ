@@ -149,15 +149,6 @@ def show_data(image):
         cv2.putText(image, "Player Speed: <{},{}>".format(player_speed[-1][0],player_speed[-1][1]), (15, 50),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.3, (0,0,0), 1)
 
-     if len(player_speed) > 1:
-        player_acc = abs(player_speed[-1] - player_speed[-2]) / delta_time
-        cv2.putText(image, "Player Acc: {}".format(player_acc), (15, 100),
-        cv2.FONT_HERSHEY_SIMPLEX, 0.3, (0,0,0), 1)
-     if len(ball_speed)>1:
-        ball_acc = abs(ball_speed[-1]-ball_speed[-2])/delta_time
-        cv2.putText(image, "Ball Acc: {}".format(ball_acc), (200, 100),
-        cv2.FONT_HERSHEY_SIMPLEX, 0.3, (0,0,0), 1)
-
 #All Processing of the image is done here       
 def process_image(image):
     get_player(image)
@@ -189,7 +180,7 @@ def emulate():
     epsilon = 1e-5
     startTime = time.time()
     x,y,buffer = 276,132,40
-    pressKeys = {"w": 0.0, "a": 0.0, "s": 0.0, "d": 0.0,"x":0.0}
+    pressKeys = {"w": 0.0, "a": 0.0, "s": 0.0, "d": 0.0}
     while True:
         if len(player_center)>0 and len(ball_center)>0 and len(player_speed)>0:
 
@@ -223,9 +214,9 @@ def emulate():
                 pressKeys["s"] = 0.0
                 
             if  len(player_center)-len(ball_center) < 8.0:
-                pyautogui.keyDown("x")
+                pyautogui.KeyDown("x")
             else:
-                pyautogui.keyUp("x")
+                pyautogui.KeyUp("x")
             
    
             
