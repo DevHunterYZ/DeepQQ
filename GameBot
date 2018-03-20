@@ -222,14 +222,11 @@ def emulate():
                 pressKeys["w"] = 0.0
                 pressKeys["s"] = 0.0
                 
-            if  len(player_center)-len(ball_center) < 8:
+            if  len(player_center)-len(ball_center) < 8.0:
                 pyautogui.keyDown("x")
             else:
                 pyautogui.keyUp("x")
-            if  len(ball_center)-len(player_center) < 8:
-                pyautogui.keyDown("x")
-            else:
-                pyautogui.keyUp("x")
+            
    
             
             
