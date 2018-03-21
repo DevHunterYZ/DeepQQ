@@ -160,7 +160,7 @@ def get_screen():
     sct = mss()
     while 1:
         last_time = time.time()
-        monitor = {'top': 230, 'left': 230, 'width': 820, 'height': 400}
+        monitor = {'top': 130, 'left': 50, 'width': 820, 'height': 400}
         img = np.array(sct.grab(monitor))
         img = cv2.resize(img, (int(monitor['width']/3),int(monitor['height']/3)))
         
@@ -179,7 +179,7 @@ def get_screen():
 def emulate():
     epsilon = 1e-5
     startTime = time.time()
-    x,y,buffer = 276,132,40
+    x,y,buffer = 0,0,40
     pressKeys = {"w": 0.0, "a": 0.0, "s": 0.0, "d": 0.0}
     while True:
         if len(player_center)>0 and len(ball_center)>0 and len(player_speed)>0:
@@ -188,35 +188,28 @@ def emulate():
             pVx,pVy = abs(player_speed[-1][0]),abs(player_speed[-1][1])
             bX,bY,bR = ball_center[-1][0],   ball_center[-1][1],   ball_radius
             
-            if pX-x>buffer:
-                print("a")
-                pressKeys["a"] = (pX-x)/(pVx+epsilon)
-
-            elif x-pX>buffer:
-                print("d")
-                pressKeys["d"] = (x - pX) / (pVx + epsilon)
-
-            else:
-                pressKeys["a"] = 0.0
-                pressKeys["d"] = 0.0
-
-
-            if pY-y>buffer:
-                print("w")
-                pressKeys["w"] = (pY - y) / (pVy + epsilon)
-
-            elif y-pY>buffer:
-                print("s")
-                pressKeys["s"] = (y - pY) / (pVy + epsilon)
-
-            else:
-                pressKeys["w"] = 0.0
-                pressKeys["s"] = 0.0
+            
                 
-            if  len(player_center)-len(ball_center) < 8.0:
-                pyautogui.KeyDown("x")
+                        currTime = time.time()
+            if currTime-startTime < pressKeys["w"]:
+                pyautogui.keyDown("w")
             else:
-                pyautogui.KeyUp("x")
+                pyautogui.keyUp("w")
+
+            if currTime-startTime < pressKeys["s"]:
+                pyautogui.keyDown("s")
+            else:
+                pyautogui.keyUp("s")
+
+            if currTime-startTime < pressKeys["a"]:
+                pyautogui.keyDown("a")
+            else:
+                pyautogui.keyUp("a")
+
+            if currTime-startTime < pressKeys["d"]:
+                pyautogui.keyDown("d")
+            else:
+                pyautogui.keyUp("d")
             
    
             
