@@ -160,7 +160,7 @@ def get_screen():
     sct = mss()
     while 1:
         last_time = time.time()
-        monitor = {'top': 130, 'left': 50, 'width': 820, 'height': 400}
+        monitor = {'top': 130, 'left': 50, 'width': 1000, 'height': 490}
         img = np.array(sct.grab(monitor))
         img = cv2.resize(img, (int(monitor['width']/3),int(monitor['height']/3)))
         
@@ -175,52 +175,17 @@ def get_screen():
             cv2.destroyAllWindows()
             break
 
+pyautogui.PAUSE = 2
+pyautogui.moveTo(400, 300); pyautogui.click()
 
-def emulate():
-    epsilon = 1e-5
-    startTime = time.time()
-    x,y,buffer = 0,0,40
-    pressKeys = {"w": 0.0, "a": 0.0, "s": 0.0, "d": 0.0}
-    while True:
-        if len(player_center)>0 and len(ball_center)>0 and len(player_speed)>0:
-
-            pX,pY,pR = player_center[-1][0], player_center[-1][1], player_radius
-            pVx,pVy = abs(player_speed[-1][0]),abs(player_speed[-1][1])
-            bX,bY,bR = ball_center[-1][0],   ball_center[-1][1],   ball_radius
-            
-            
-                
-                        currTime = time.time()
-            if currTime-startTime < pressKeys["w"]:
-                pyautogui.keyDown("w")
-            else:
-                pyautogui.keyUp("w")
-
-            if currTime-startTime < pressKeys["s"]:
-                pyautogui.keyDown("s")
-            else:
-                pyautogui.keyUp("s")
-
-            if currTime-startTime < pressKeys["a"]:
-                pyautogui.keyDown("a")
-            else:
-                pyautogui.keyUp("a")
-
-            if currTime-startTime < pressKeys["d"]:
-                pyautogui.keyDown("d")
-            else:
-                pyautogui.keyUp("d")
-            
-   
+pyautogui.keyDown("w")
+pyautogui.keyDown("x")
+    
+                    
             
             
 for i in range(3)[-1:]:
     print(i)
     time.sleep(1)
 
-emulator = threading.Thread(target = emulate)
-emulator.daemon = True
-emulator.start()
-
 get_screen()
-        
