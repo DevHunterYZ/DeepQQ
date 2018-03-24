@@ -174,13 +174,16 @@ def get_screen():
         if cv2.waitKey(25) & 0xFF == ord('q'):
             cv2.destroyAllWindows()
             break
-
-pyautogui.PAUSE = 2
-pyautogui.moveTo(400, 300); pyautogui.click()
-
-pyautogui.keyDown("w")
-pyautogui.keyDown("x")
-    
+def randomkeydown():
+    while True:
+        e=np.random.random((2,))
+        f=np.random.random((2,))
+        value=abs(e-f)
+        for f in value<=0.3:
+            if f:
+                pyautogui.keyDown("a")
+            else:
+                pyautogui.keyDown("d")
                     
             
             
