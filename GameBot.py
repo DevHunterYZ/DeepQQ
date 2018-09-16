@@ -174,9 +174,8 @@ def get_screen():
         if cv2.waitKey(25) & 0xFF == ord('q'):
             cv2.destroyAllWindows()
             break
-def randomkeydown():
-    while True:
-        e=np.random.random((2,))
+while True:
+    e=np.random.random((2,))
         f=np.random.random((2,))
         value=abs(e-f)
         for f in value<=0.3:
