@@ -176,9 +176,11 @@ def get_screen():
             break
 while True:
     e=np.random.random((2,))
-        f=np.random.random((2,))
-        value=abs(e-f)
-        for f in value<=0.3:
+    while True:
+    e=np.random.random((2,))
+    f=np.random.random((2,))
+    value=abs(e-f)
+    for f in value<=0.3:
             if f:
                 pyautogui.keyDown("a")
             else:
